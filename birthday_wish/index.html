@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday Kashish 🎂</title>
+  <style>
+    :root{
+      --bg:#fff0f6;
+      --accent:#ff6b9a;
+      --accent-2:#ffb6c1;
+      --muted:#6b6b6b;
+      --card:#ffffff;
+      --shadow:0 10px 30px rgba(0,0,0,0.08);
+      --glass:rgba(255,255,255,0.6);
+    }
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at 10% 10%, #fff6fb 0%, var(--bg) 40%);
+      color:#222;
+      scroll-behavior:smooth;
+    }
+    .container{max-width:960px;margin:0 auto;padding:28px}
+    header.hero{
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;padding:48px 18px;border-radius:18px;margin-top:20px;
+      position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.8),var(--card));
+      box-shadow:var(--shadow);
+    }
+    h1{font-size:clamp(28px,5vw,44px);margin:6px 0;color:var(--accent);}
+    p.lead{color:var(--muted);margin:0 0 14px 0;font-size:1.1rem;}
+
+    .hearts{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+    .heart{position:absolute;width:36px;height:36px;transform:translateY(0) rotate(-20deg);opacity:0.9;}
+    .heart:before,.heart:after{content:'';position:absolute;width:18px;height:28px;background:var(--accent);border-radius:18px 18px 0 0;}
+    .heart:before{left:9px;transform:rotate(-45deg);}
+    .heart:after{left:0;transform:rotate(45deg);}
+
+    section{margin:28px 0;padding:22px;border-radius:14px;background:var(--glass);box-shadow:var(--shadow);}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:12px;}
+    .photo{border-radius:10px;overflow:hidden;height:180px;}
+    .photo img{width:100%;height:100%;object-fit:cover;transition:transform .3s;}
+    .photo img:hover{transform:scale(1.05);}
+
+    .message{font-size:1.1rem;line-height:1.6;}
+    .signature{margin-top:14px;font-weight:bold;}
+
+    .btn{display:inline-block;padding:10px 16px;border-radius:12px;border:none;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;
+      font-weight:600;cursor:pointer;box-shadow:0 6px 18px rgba(255,107,154,0.18);}
+    .btn:hover{opacity:0.9;}
+    footer{padding:18px;text-align:center;color:var(--muted);font-size:0.9rem;}
+
+    .reveal{opacity:0;transform:translateY(20px);transition:all .7s ease;}
+    .reveal.visible{opacity:1;transform:none;}
+  </style>
+</head>
+<body>
+  <div class="hearts" id="hearts"></div>
+
+  <div class="container">
+    <header class="hero">
+      <h1>Happy Birthday, Pyariiii 🎂</h1>
+      <p class="lead">Today is all about you — smiles, cake, and endless joy 💖</p>
+      
+    </header>
+
+    <main>
+      <section class="reveal" id="gallery-section">
+        <h2>💞 Our Beautiful Moments 💞</h2>
+        <p style="color:var(--muted);">Some of our favourite memories together...</p>
+
+        <div class="gallery">
+          <div class="photo"><img src="images/1.jpg" alt="Kashish photo 1"></div>
+          <div class="photo"><img src="images/2.jpg" alt="Kashish photo 2"></div>
+          <div class="photo"><img src="images/4.jpg" alt="Kashish photo 3"></div>
+
+        </div>
+      </section>
+
+      <section class="reveal">
+        <h2>💌 For you Bakudii</h2>
+        <p class="message">
+          Happy Birthday to the most amazing girl in my world 💖 <br><br>
+          Kashish, your smile is brighter than any sunshine,<br>
+          your laughter is the music, my heart never gets tired of.<br>
+          Every moment with you feels like magic — you make even the ordinary days beautiful.<br><br>
+          On your special day, I just want you to know how lucky I feel to have you in my life.<br>
+          I wish your birthday is filled with love, laughter, and everything that makes you smile.
+        </p>
+        <div class="signature">— Rudra ❤️</div>
+      </section>
+
+      <section class="reveal">
+        <h2>🎉 A Little Surprise 🎉</h2>
+        <p style="color:var(--muted);">Tap the button to celebrate with confetti and hearts!</p>
+        <button class="btn" onclick="startConfetti()">Celebrate 🎊</button>
+      </section>
+    </main>
+
+    <footer>
+      Made with ❤️ by <strong>Rudra</strong> — Happy Birthday Kashiiii<strong></strong> 🎉
+    </footer>
+  </div>
+
+  <script>
+    // Floating hearts
+    const heartsRoot = document.getElementById('hearts');
+    const rand = (a,b)=>Math.random()*(b-a)+a;
+    function createHeart(x,y,size,delay){
+      const el=document.createElement('div');
+      el.className='heart';
+      el.style.left=(x||rand(5,95))+'%';
+      el.style.top=(y||rand(10,60))+'%';
+      el.style.width=(size||rand(22,44))+'px';
+      el.style.height=(size||rand(22,44))+'px';
+      heartsRoot.appendChild(el);
+      setTimeout(()=>{
+        el.style.transition='transform 3s linear, opacity 2s linear';
+        el.style.transform=`translateY(-80vh)`;
+        el.style.opacity=0;
+      },delay||100);
+      setTimeout(()=>el.remove(),3500);
+    }
+    function sendHearts(n){for(let i=0;i<n;i++)createHeart(rand(10,90),rand(40,80),rand(20,40),i*15);}
+
+    // Confetti
+    function startConfetti(){
+      const colors=['#ff6b9a','#ffd66b','#9af0ff','#ffb6c1','#d8b4ff'];
+      for(let i=0;i<100;i++){
+        const c=document.createElement('div');
+        c.style.position='fixed';
+        c.style.left=rand(0,100)+'%';
+        c.style.top='-10px';
+        c.style.width=rand(6,14)+'px';
+        c.style.height=rand(8,20)+'px';
+        c.style.background=colors[Math.floor(rand(0,colors.length))];
+        c.style.opacity=rand(0.8,1);
+        c.style.zIndex=50;
+        document.body.appendChild(c);
+        const dur=rand(2500,4000);
+        c.animate([{transform:'translateY(0)'},{transform:`translateY(${window.innerHeight+100}px)`}],{duration:dur,easing:'linear'});
+        setTimeout(()=>c.remove(),dur);
+      }
+    }
+
+    // Scroll reveal
+    const reveals=document.querySelectorAll('.reveal');
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+    },{threshold:0.15});
+    reveals.forEach(r=>obs.observe(r));
+  </script>
+</body>
+</html>
